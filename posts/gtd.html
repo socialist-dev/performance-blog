@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Things Done (GTD) - Nhật Ký Hiệu Suất</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <script>
+        // Anti-FOUC script
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo-link">
+            <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
+                <i class="header-logo ph-fill ph-notebook"></i>
+                <span>Nhật Ký</span>
+            </a>
+        </h1>
+        <nav class="main-nav">
+            <a href="../index.html">Bài viết</a>
+            <a href="../tools.html">Công cụ</a>
+        </nav>
+        <div class="theme-switcher">
+            <label for="theme-toggle">Chế độ Tối</label>
+            <input type="checkbox" id="theme-toggle">
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <nav class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Getting Things Done (GTD)</span>
+            </nav>
+            <div class="post-header-emoji">📋</div>
+            <h2>Getting Things Done (GTD)</h2>
+            <div class="post-meta">
+                <span>Ngày 18 tháng 10, 2025</span>
+                <span>•</span>
+                <span>12 phút đọc</span>
+                <span class="badge">Tổ chức</span>
+            </div>
+
+            <h3>1. Tại Sao Não Chúng Ta Hay Quá Tải?</h3>
+            <p>Bộ não con người, một cỗ máy sinh học kỳ diệu, lại có một điểm yếu cố hữu: bộ nhớ làm việc (working memory) cực kỳ hạn chế. Giống như RAM của máy tính, nó chỉ có thể xử lý và giữ một vài thông tin cùng một lúc. Khi chúng ta cố gắng ghi nhớ mọi cuộc hẹn, ý tưởng, và danh sách công việc trong đầu, chúng ta đang tạo ra vô số các "vòng lặp mở" (open loops). Các nghiên cứu khoa học, đặc biệt là những nghiên cứu về Hiệu ứng Zeigarnik, chỉ ra rằng não bộ có xu hướng liên tục "ping" chúng ta về những nhiệm vụ chưa hoàn thành, gây ra sự phân tâm, lo lắng và làm giảm đáng kể khả năng tập trung vào công việc hiện tại.</p>
+
+            <h3>2. Nguyên Tắc Cốt Lõi: Giảm Tải Nhận Thức (Cognitive Offloading)</h3>
+            <p>Đây là nền tảng khoa học chính và mạnh mẽ nhất của GTD. Thay vì biến não thành một kho lưu trữ quá tải, GTD biến nó thành một công cụ xử lý thông tin hiệu quả. Bằng cách "giảm tải" (cognitive offloading) tất cả các cam kết, ý tưởng và nhiệm vụ ra một "hệ thống bên ngoài đáng tin cậy" (external trusted system) – có thể là một cuốn sổ, một ứng dụng, hay một hệ thống file vật lý – bạn giải phóng tài nguyên nhận thức quý giá. Các nghiên cứu về "trí nhớ mở rộng" (extended mind) và "nhận thức phân tán" (distributed cognition) cho thấy việc sử dụng các công cụ bên ngoài không phải là sự "gian lận", mà là một cách tự nhiên và hiệu quả để bộ não hoạt động tối ưu. Hệ thống GTD của bạn trở thành một bộ não thứ hai, đáng tin cậy và luôn sẵn sàng.</p>
+
+            <h3>3. Năm Bước Của GTD Dưới Góc Nhìn Khoa Học</h3>
+            <p>Mỗi bước trong GTD đều được thiết kế để làm việc với, chứ không phải chống lại, cách bộ não chúng ta vận hành, giúp chuyển đổi sự hỗn loạn thành sự rõ ràng và hành động.</p>
+            <pre class="mermaid">
+                graph TD
+                    A[Hộp thư đến: Mọi thứ thu hút sự chú ý của bạn] --> B{Có cần hành động không?};
+                    B -- Không --> C{Thùng rác, Tham khảo, Có thể làm sau};
+                    B -- Có --> D{Hành động tiếp theo là gì?};
+                    D --> E{Mất ít hơn 2 phút?};
+                    E -- Có --> F[Làm ngay];
+                    E -- Không --> G{Có thể ủy quyền không?};
+                    G -- Có --> H[Ủy quyền];
+                    G -- Không --> I{Khi nào cần làm?};
+                    I -- Ngày cụ thể --> J[Lịch];
+                    I -- Không cụ thể --> K[Danh sách Dự án / Hành động tiếp theo];
+                    K --> L[Rà soát hàng tuần];
+            </pre>
+            <p class="chart-caption"><em>Biểu đồ 1: Quy trình 5 bước của phương pháp Getting Things Done (GTD).</em></p>
+            <ol>
+                <li><strong>Thu thập (Capture):</strong> Ghi lại mọi thứ nảy ra trong đầu. Bước này trực tiếp đóng các "vòng lặp mở", ngăn chặn Hiệu ứng Zeigarnik làm bạn phân tâm và giải phóng "băng thông" tinh thần.</li>
+                <li><strong>Làm rõ (Clarify):</strong> Với mỗi mục đã thu thập, hãy tự hỏi: "Nó có cần hành động không?" Nếu không, hãy vứt bỏ, lưu trữ hoặc ấp ủ nó. Nếu có, hãy xác định "Hành động tiếp theo là gì?" Việc xác định hành động cụ thể, rõ ràng sẽ làm giảm sự mơ hồ và kháng cự của vỏ não trước trán khi bắt đầu công việc.</li>
+                <li><strong>Tổ chức (Organize):</strong> Đặt mọi thứ vào đúng chỗ của nó. Các hành động tiếp theo vào danh sách, các dự án vào một danh sách riêng, thông tin tham khảo vào nơi lưu trữ. Việc này tạo ra một cấu trúc rõ ràng, giúp não bộ tin tưởng vào hệ thống và ngừng lo lắng về việc bỏ sót thứ gì đó.</li>
+                <li><strong>Rà soát (Reflect):</strong> Thường xuyên xem lại danh sách của bạn. Việc rà soát hàng tuần (Weekly Review) là một phần quan trọng, giúp bạn có cái nhìn tổng quan, điều chỉnh ưu tiên và đảm bảo hệ thống luôn được cập nhật. Điều này củng cố niềm tin vào hệ thống và mang lại cảm giác kiểm soát, giảm thiểu căng thẳng.</li>
+                <li><strong>Thực hiện (Engage):</strong> Dựa trên bối cảnh, thời gian và năng lượng hiện có, bạn chọn công việc để làm từ danh sách đã được xác định trước. Vì các quyết định khó khăn đã được thực hiện ở bước "Làm rõ" và "Tổ chức", bạn có thể bước vào trạng thái "dòng chảy" (flow state) một cách dễ dàng hơn, nơi sự tập trung cao độ và hiệu suất tối ưu được duy trì.</li>
+            </ol>
+            
+            <h3>4. Lợi Ích Được Chứng Minh & Kết Nối Thần Kinh Học</h3>
+            <p>Nghiên cứu về tâm lý học tích cực cho thấy việc có một hệ thống như GTD giúp tăng "Vốn tâm lý" (PsyCap), bao gồm sự tự tin (self-efficacy), lạc quan, hy vọng và khả năng phục hồi. Khi bạn biết rằng mọi thứ đều được kiểm soát, mức độ căng thẳng sẽ giảm xuống và khả năng đối mặt với những thách thức bất ngờ sẽ tăng lên. Bạn không còn phản ứng với sự hỗn loạn nữa, mà thay vào đó, bạn tương tác với thế giới một cách có chủ đích.</p>
+            <p>Từ góc độ thần kinh học, GTD giúp tối ưu hóa chức năng của vỏ não trước trán (prefrontal cortex) – trung tâm điều hành của não bộ, chịu trách nhiệm về sự tập trung và ra quyết định. Bằng cách giảm tải gánh nặng ghi nhớ, vỏ não trước trán có thể dành năng lượng cho việc xử lý và giải quyết vấn đề. Việc chia nhỏ nhiệm vụ thành các "hành động tiếp theo" cụ thể cũng giúp tránh phản ứng sợ hãi của hạch hạnh nhân (amygdala) gây ra sự trì hoãn khi đối mặt với các nhiệm vụ lớn. Hơn nữa, việc hoàn thành các hành động nhỏ và thấy tiến độ giúp kích hoạt hệ thống khen thưởng dopamine của não, tạo ra động lực tích cực.</p>
+
+            <h3>5. Những Lưu Ý & Hạn Chế</h3>
+            <p>Mặc dù GTD có cơ sở lý thuyết vững chắc và được hàng triệu người áp dụng thành công, một số nhà nghiên cứu chỉ ra rằng vẫn còn thiếu các thử nghiệm lâm sàng ngẫu nhiên có kiểm soát (Randomized Controlled Trials - RCTs) quy mô lớn để chứng minh định lượng hiệu quả của nó so với các phương pháp khác. Tuy nhiên, các bằng chứng giai thoại và quan sát thực nghiệm đều cho thấy GTD là một công cụ mạnh mẽ để đạt được sự rõ ràng, kiểm soát và giảm stress trong công việc và cuộc sống.</p>
+
+        </article>
+            <button id="scrollToTopBtn" title="Lên đầu trang"><i class="ph-fill ph-arrow-up"></i></button>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>

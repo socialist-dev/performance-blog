@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật Ký Hiệu Suất</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script>
+        // Anti-FOUC script
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo-link">
+            <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                <i class="header-logo ph-fill ph-notebook"></i>
+                <span>Nhật Ký</span>
+            </a>
+        </h1>
+        <nav class="main-nav">
+            <a href="index.html" class="active">Bài viết</a>
+            <a href="tools.html">Công cụ</a>
+        </nav>
+        <div class="theme-switcher">
+            <label for="theme-toggle">Chế độ Tối</label>
+            <input type="checkbox" id="theme-toggle">
+        </div>
+    </header>
+
+    <main>
+        <div class="post-list">
+            <h2>Các Bài Viết</h2>
+
+            <div class="filter-badges">
+                <button class="filter-btn active" data-badge="all">Tất cả</button>
+                <button class="filter-btn" data-badge="Thời gian">Thời gian</button>
+                <button class="filter-btn" data-badge="Tổ chức">Tổ chức</button>
+                <button class="filter-btn" data-badge="Năng suất">Năng suất</button>
+            </div>
+
+            <div class="posts-by-year">
+                <h3 class="year-heading">2025</h3>
+                <div class="posts-by-month">
+                    <h4 class="month-heading">Tháng 10</h4>
+                    <ul>
+                        <li data-badge="Tư duy">
+                            <a href="posts/discipline-redefined.html">
+                                <div class="post-link-content">
+                                    <span class="post-list-emoji">🧠</span>
+                                    <span class="post-title">Kỷ Luật Không Phải Là Gồng Mình</span>
+                                </div>
+                                <div class="post-metadata">
+                                    <span class="post-date">21</span>
+                                    <span class="badge" data-badge="Tư duy">Tư duy</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li data-badge="Thời gian">
+                            <a href="posts/pomodoro.html">
+                                <div class="post-link-content">
+                                    <span class="post-list-emoji">🍅</span>
+                                    <span class="post-title">Kỹ Thuật Pomodoro (Quả Cà Chua)</span>
+                                </div>
+                                <div class="post-metadata">
+                                    <span class="post-date">19</span>
+                                    <span class="badge" data-badge="Thời gian">Thời gian</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li data-badge="Tổ chức">
+                            <a href="posts/gtd.html">
+                                <div class="post-link-content">
+                                    <span class="post-list-emoji">📋</span>
+                                    <span class="post-title">Getting Things Done (GTD)</span>
+                                </div>
+                                <div class="post-metadata">
+                                    <span class="post-date">18</span>
+                                    <span class="badge" data-badge="Tổ chức">Tổ chức</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li data-badge="Năng suất">
+                            <a href="posts/eisenhower.html">
+                                <div class="post-link-content">
+                                    <span class="post-list-emoji">📊</span>
+                                    <span class="post-title">Ma Trận Eisenhower</span>
+                                </div>
+                                <div class="post-metadata">
+                                    <span class="post-date">17</span>
+                                    <span class="badge" data-badge="Năng suất">Năng suất</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li data-badge="Thời gian">
+                            <a href="posts/time-blocking.html">
+                                <div class="post-link-content">
+                                    <span class="post-list-emoji">🗓️</span>
+                                    <span class="post-title">Chặn Thời Gian (Time Blocking)</span>
+                                </div>
+                                <div class="post-metadata">
+                                    <span class="post-date">16</span>
+                                    <span class="badge" data-badge="Thời gian">Thời gian</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1383 @@
+:root {
+    /* Font & Spacing */
+    --font-family: Consolas, Monaco, 'Lucida Console', monospace;
+    --font-size-base: 16px;
+    --line-height-base: 1.7;
+    --spacing-unit: 1rem;
+    --border-radius: 6px;
+
+    /* Radix-inspired Grayscale Palette (Light Theme) */
+    --md-sys-color-primary-light: #111111;
+    --md-sys-color-on-primary-light: #fcfcfc;
+    --md-sys-color-background-light: #fcfcfc;
+    --md-sys-color-on-background-light: #111111;
+    --md-sys-color-surface-light: #f8f8f8;
+    --md-sys-color-on-surface-light: #111111;
+    --md-sys-color-surface-variant-light: #eeeeee;
+    --md-sys-color-on-surface-variant-light: #686868;
+    --md-sys-color-outline-light: #e5e5e5;
+
+    /* Radix-inspired Accent Palette (Light Theme) */
+    --md-sys-color-secondary-light: #b3a180;
+    --md-sys-color-on-secondary-light: #fdfcfb;
+    --md-sys-color-secondary-container-light: #f2f1ec;
+    --md-sys-color-on-secondary-container-light: #79756a;
+    --md-sys-color-tertiary-light: #0090ff;
+    --md-sys-color-tertiary-container-light: #eaf6ff;
+    --md-sys-color-error-light: #e5484d;
+    --md-sys-color-error-container-light: #fdeaea;
+
+    /* Radix-inspired Grayscale Palette (Dark Theme) - CUSTOM V2 (Softer Contrast) */
+    --md-sys-color-primary-dark: #c8c1b1; /* Softer Cream for Headings & Links */
+    --md-sys-color-on-primary-dark: #111111;
+    --md-sys-color-background-dark: #000000;
+    --md-sys-color-on-background-dark: #ababab; /* Softer Gray for Main body text */
+    --md-sys-color-surface-dark: #111111;
+    --md-sys-color-on-surface-dark: #ababab;
+    --md-sys-color-surface-variant-dark: #222222;
+    --md-sys-color-on-surface-variant-dark: #888888; /* Darker secondary text */
+    --md-sys-color-outline-dark: #333333; /* Softer borders */
+
+    /* Radix-inspired Accent Palette (Dark Theme) - CUSTOM */
+    --md-sys-color-secondary-dark: #b3a180;
+    --md-sys-color-on-secondary-dark: #fdfcfb;
+    --md-sys-color-secondary-container-dark: #23211b;
+    --md-sys-color-on-secondary-container-dark: #c8c1b1;
+    --md-sys-color-tertiary-dark: #0090ff;
+    --md-sys-color-tertiary-container-dark: #002f54;
+    --md-sys-color-error-dark: #e5484d;
+    --md-sys-color-error-container-dark: #4f1618;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--md-sys-color-background-light);
+    color: var(--md-sys-color-on-background-light);
+}
+
+.dark-mode body {
+    background-color: var(--md-sys-color-background-dark);
+    color: var(--md-sys-color-on-background-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+    color: var(--md-sys-color-primary-dark);
+}
+
+/* Uppercase for post titles */
+article h2 {
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+main {
+    max-width: 800px;
+    margin: calc(var(--spacing-unit) * 2) auto;
+    padding: 0 var(--spacing-unit);
+}
+
+a {
+    color: var(--md-sys-color-primary-light);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.dark-mode a {
+    color: var(--md-sys-color-primary-dark);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: var(--md-sys-color-surface-light);
+    border-bottom: 1px solid var(--md-sys-color-outline-light);
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark-mode header {
+    background-color: var(--md-sys-color-surface-dark);
+    border-bottom-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-variant-dark); /* Color for secondary text in header */
+}
+
+.dark-mode header h1 a {
+    color: var(--md-sys-color-primary-dark); /* Ensure main title has primary color */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo {
+    vertical-align: middle;
+    font-size: 1.8rem;
+}
+
+/* Styles for Year/Month Grouping */
+.year-heading {
+    font-size: 1.5rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+    margin-top: calc(var(--spacing-unit) * 2);
+    margin-bottom: var(--spacing-unit);
+}
+.dark-mode .year-heading {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+.month-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-unit);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--md-sys-color-outline-light);
+}
+.dark-mode .month-heading {
+    border-bottom-color: var(--md-sys-color-outline-dark);
+}
+
+.post-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    margin-bottom: calc(var(--spacing-unit));
+    border-bottom: 1px solid var(--md-sys-color-outline-light);
+    transition: border-color 0.3s;
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+}
+
+.dark-mode .post-list li {
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+.post-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-unit) 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.post-title {
+    flex-grow: 1;
+    margin-right: var(--spacing-unit);
+}
+
+.post-link-content {
+    display: flex;
+    align-items: center;
+}
+
+.post-list-emoji {
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+.post-metadata {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+    color: var(--md-sys-color-on-surface-variant-light);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.dark-mode .post-metadata {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+article {
+    margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    line-height: var(--line-height-base);
+    margin-bottom: var(--spacing-unit);
+}
+
+strong {
+    font-weight: 600;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-unit);
+    margin-top: calc(var(--spacing-unit) / 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    font-size: 0.9rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .post-meta {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    font-weight: 500;
+    background-color: var(--md-sys-color-secondary-container-light);
+    color: var(--md-sys-color-on-secondary-container-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .badge {
+    background-color: var(--md-sys-color-secondary-container-dark);
+    color: var(--md-sys-color-on-secondary-container-dark);
+}
+
+.breadcrumb {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    font-size: 0.9rem;
+}
+
+.breadcrumb a {
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .breadcrumb a {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.breadcrumb span {
+    margin: 0 5px;
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .breadcrumb span {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+
+/* Theme Switcher */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switcher label {
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+#theme-toggle {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 22px;
+    border-radius: 22px;
+    background-color: var(--md-sys-color-surface-variant-light);
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.dark-mode #theme-toggle {
+    background-color: var(--md-sys-color-surface-variant-dark);
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#theme-toggle:checked {
+    background-color: var(--md-sys-color-primary-light);
+}
+
+.dark-mode #theme-toggle:checked {
+    background-color: var(--md-sys-color-primary-dark);
+}
+
+#theme-toggle:checked::before {
+    transform: translateX(18px);
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--md-sys-color-primary-light);
+    color: var(--md-sys-color-on-primary-light);
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, opacity 0.3s, visibility 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#scrollToTopBtn i {
+    font-size: 24px;
+}
+
+.dark-mode #scrollToTopBtn {
+    background-color: var(--md-sys-color-primary-dark);
+    color: var(--md-sys-color-on-primary-dark);
+}
+
+#scrollToTopBtn:hover {
+    opacity: 0.8;
+}
+
+.dark-mode #scrollToTopBtn:hover {
+    opacity: 0.8;
+}
+
+/* Styles for Badge Filtering */
+.filter-badges {
+    margin-bottom: var(--spacing-unit);
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    background-color: var(--md-sys-color-secondary-container-light);
+    color: var(--md-sys-color-on-secondary-container-light);
+    border: 1px solid transparent;
+    padding: 5px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .filter-btn {
+    background-color: var(--md-sys-color-secondary-container-dark);
+    color: var(--md-sys-color-on-secondary-container-dark);
+}
+
+.filter-btn.active {
+    background-color: var(--md-sys-color-secondary-light);
+    color: var(--md-sys-color-on-secondary-light);
+}
+
+.dark-mode .filter-btn.active {
+    background-color: var(--md-sys-color-secondary-dark);
+    color: var(--md-sys-color-on-secondary-dark);
+}
+
+.post-list li.hidden {
+    display: none;
+}
+
+.post-list-emoji {
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+/* Style for Post Header Emoji */
+.post-header-emoji {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-unit);
+    line-height: 1;
+}
+
+.chart-caption {
+    font-size: 0.9rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+    text-align: center;
+    margin-top: var(--spacing-unit);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    font-style: italic;
+}
+
+.dark-mode .chart-caption {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+/* Center Mermaid Charts */
+.centered-chart {
+    max-width: 100%; /* Ensure it doesn't overflow on small screens */
+}
+
+pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+}
+
+/* === Tool Page Specific Styles === */
+
+.main-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+.main-nav a.active {
+    font-weight: bold;
+    background-color: var(--md-sys-color-secondary-container-light);
+    color: var(--md-sys-color-on-secondary-container-light);
+}
+
+.dark-mode .main-nav a.active {
+    background-color: var(--md-sys-color-secondary-container-dark);
+    color: var(--md-sys-color-on-secondary-container-dark);
+}
+
+
+.tool-container {
+    background-color: var(--md-sys-color-surface-light);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .tool-container {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-dark); /* Fix: Ensure text is light in dark mode */
+}
+
+.tool-description {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .tool-description {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.task-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--md-sys-color-outline-light);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    background-color: var(--md-sys-color-background-light);
+    color: var(--md-sys-color-on-background-light);
+}
+
+.dark-mode #task-input {
+    background-color: var(--md-sys-color-surface-variant-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-background-dark);
+}
+
+#add-task-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--md-sys-color-primary-light);
+    color: var(--md-sys-color-on-primary-light);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: opacity 0.3s;
+}
+
+.dark-mode #add-task-btn {
+    background-color: var(--md-sys-color-primary-dark);
+    color: var(--md-sys-color-on-primary-dark);
+}
+
+#add-task-btn:hover {
+    opacity: 0.8;
+}
+
+.eisenhower-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--spacing-unit);
+    min-height: 60vh;
+}
+
+.quadrant {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    display: flex;
+    flex-direction: column;
+    border-width: 2px;
+    border-style: solid;
+    transition: background-color 0.3s, border-color 0.3s;
+    min-height: 0; /* Flexbox bug fix */
+}
+
+.quadrant h3 {
+    margin-top: 0;
+    font-size: 1rem;
+    text-align: center;
+    padding-bottom: var(--spacing-unit);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+/* Quadrant Specific Colors & Backgrounds */
+
+/* Do (Urgent, Important) */
+.quadrant.do {
+    border-color: #E5484D;
+    background-color: #F9D7D9;
+}
+.quadrant.do h3 {
+    border-bottom-color: #E5484D;
+}
+.dark-mode .quadrant.do {
+    background-color: #5D2023;
+}
+
+/* Schedule (Not Urgent, Important) */
+.quadrant.schedule {
+    border-color: #2E90FA;
+    background-color: #D5E8FD;
+}
+.quadrant.schedule h3 {
+    border-bottom-color: #2E90FA;
+}
+.dark-mode .quadrant.schedule {
+    background-color: #003E7A;
+}
+
+/* Delegate (Urgent, Not Important) */
+.quadrant.delegate {
+    border-color: #F5A524;
+    background-color: #FCEACC;
+}
+.quadrant.delegate h3 {
+    border-bottom-color: #F5A524;
+}
+.dark-mode .quadrant.delegate {
+    border-color: #F5A524;
+    background-color: #6B460A;
+}
+
+/* Eliminate (Not Urgent, Not Important) */
+.quadrant.eliminate {
+    border-color: #888888;
+    background-color: #EAEAEA;
+}
+.quadrant.eliminate h3 {
+    border-bottom-color: #888888;
+}
+.dark-mode .quadrant.eliminate {
+    border-color: #57534E;
+    background-color: #3C3C3C;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    flex-shrink: 1; /* Allow list to shrink */
+}
+
+.task-item {
+    background-color: var(--md-sys-color-surface-light);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .task-item {
+    background-color: var(--md-sys-color-surface-dark);
+}
+
+.task-item .task-name {
+    flex-grow: 1;
+}
+
+.task-item .task-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.task-item button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    font-size: 1.2rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+    transition: color 0.2s;
+}
+
+.dark-mode .task-item button {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.task-item button:hover {
+    color: var(--md-sys-color-primary-light);
+}
+
+.dark-mode .task-item button:hover {
+    color: var(--md-sys-color-primary-dark);
+}
+
+/* Styles for Drag and Drop */
+.task-placeholder {
+    background-color: var(--md-sys-color-surface-variant-light);
+    border: 2px dashed var(--md-sys-color-outline-light);
+    height: 40px;
+    margin-bottom: 8px;
+    border-radius: var(--border-radius);
+}
+
+.dark-mode .task-placeholder {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+.task-item.dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* === Tab System Styles === */
+.tabs-container {
+    width: 100%;
+}
+
+.tab-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .tab-nav {
+    border-bottom-color: var(--md-sys-color-outline-dark);
+}
+
+.tab-nav li {
+    margin-bottom: -2px; /* Pull the bottom border up */
+}
+
+.tab-link {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--md-sys-color-on-surface-variant-light);
+    border: 2px solid transparent;
+    border-bottom: none;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    font-size: 1rem;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.dark-mode .tab-link {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.tab-link:hover {
+    background-color: var(--md-sys-color-surface-light);
+}
+
+.dark-mode .tab-link:hover {
+    background-color: var(--md-sys-color-surface-dark);
+}
+
+.tab-link.active {
+    color: var(--md-sys-color-primary-light);
+    border-color: var(--md-sys-color-outline-light);
+    border-bottom: 2px solid var(--md-sys-color-background-light);
+    font-weight: 600;
+}
+
+.dark-mode .tab-link.active {
+    color: var(--md-sys-color-primary-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    border-bottom: 2px solid var(--md-sys-color-background-dark);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* === GTD Tool Styles === */
+.gtd-container .tool-description {
+    margin-bottom: 20px;
+}
+
+.gtd-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#gtd-inbox-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--md-sys-color-outline-light);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    background-color: var(--md-sys-color-background-light);
+    color: var(--md-sys-color-on-background-light);
+}
+
+.dark-mode #gtd-inbox-input {
+    background-color: var(--md-sys-color-surface-variant-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-background-dark);
+}
+
+#gtd-add-inbox-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--md-sys-color-primary-light);
+    color: var(--md-sys-color-on-primary-light);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: opacity 0.3s;
+}
+
+.dark-mode #gtd-add-inbox-btn {
+    background-color: var(--md-sys-color-primary-dark);
+    color: var(--md-sys-color-on-primary-dark);
+}
+
+#gtd-add-inbox-btn:hover { opacity: 0.8; }
+
+.gtd-section {
+    margin-bottom: 20px;
+}
+
+.gtd-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .gtd-section h3 {
+    border-bottom-color: var(--md-sys-color-outline-dark);
+}
+
+.gtd-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gtd-list {
+    list-style: none;
+    padding: 0;
+    min-height: 100px;
+    background-color: var(--md-sys-color-surface-variant-light);
+    border-radius: var(--border-radius);
+    padding: 10px;
+}
+
+.dark-mode .gtd-list {
+    background-color: var(--md-sys-color-surface-variant-dark);
+}
+
+.gtd-item {
+    background-color: var(--md-sys-color-surface-light);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dark-mode .gtd-item {
+    background-color: var(--md-sys-color-surface-dark);
+}
+
+.gtd-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gtd-item-name {
+    flex-grow: 1;
+}
+
+.gtd-item-actions button, .gtd-process-actions button {
+    background: none;
+    border: 1px solid var(--md-sys-color-outline-light);
+    color: var(--md-sys-color-on-surface-variant-light);
+    border-radius: var(--border-radius);
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: all 0.2s;
+}
+
+.dark-mode .gtd-item-actions button, .dark-mode .gtd-process-actions button {
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.gtd-item-actions button:hover, .gtd-process-actions button:hover {
+    border-color: var(--md-sys-color-primary-light);
+    color: var(--md-sys-color-primary-light);
+}
+
+.dark-mode .gtd-item-actions button:hover, .dark-mode .gtd-process-actions button:hover {
+    border-color: var(--md-sys-color-primary-dark);
+    color: var(--md-sys-color-primary-dark);
+}
+
+.gtd-item-actions .delete-btn:hover {
+    border-color: var(--md-sys-color-error-light);
+    color: var(--md-sys-color-error-light);
+}
+
+.dark-mode .gtd-item-actions .delete-btn:hover {
+    border-color: var(--md-sys-color-error-dark);
+    color: var(--md-sys-color-error-dark);
+}
+
+.gtd-item.done .gtd-item-name {
+    text-decoration: line-through;
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .gtd-item.done .gtd-item-name {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.gtd-item-actions button:disabled, .gtd-process-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gtd-item-actions button:disabled:hover, .gtd-process-actions button:disabled:hover {
+    border-color: var(--md-sys-color-outline-light);
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .gtd-item-actions button:disabled:hover, .dark-mode .gtd-process-actions button:disabled:hover {
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.tool-guide {
+    background-color: var(--md-sys-color-surface-light);
+    border: 1px solid var(--md-sys-color-outline-light);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.dark-mode .tool-guide {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+.tool-guide h4 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.tool-guide ol, .tool-guide ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.tool-guide ul {
+    margin-top: 10px;
+}
+/* === Ritual Tool Styles === */
+.ritual-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#tone-icon-switch {
+    background-color: var(--md-sys-color-surface-variant-light);
+    border: 2px solid var(--md-sys-color-outline-light);
+    color: var(--md-sys-color-on-surface-variant-light);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.dark-mode #tone-icon-switch {
+    background-color: var(--md-sys-color-surface-variant-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+#tone-icon-switch:hover {
+    transform: scale(1.1);
+}
+
+#tone-icon-switch.intense-active {
+    background-color: var(--md-sys-color-error-container-light);
+    border-color: var(--md-sys-color-error-light);
+    color: var(--md-sys-color-error-light);
+}
+
+.dark-mode #tone-icon-switch.intense-active {
+    background-color: var(--md-sys-color-error-container-dark);
+    border-color: var(--md-sys-color-error-dark);
+    color: var(--md-sys-color-error-dark);
+}
+
+/* Custom Tooltip Styles */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: var(--border-radius);
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.dark-mode .custom-tooltip {
+    background-color: #000000;
+    color: var(--md-sys-color-on-background-dark);
+    border: 1px solid var(--md-sys-color-outline-dark);
+}
+
+/* Tooltip arrow */
+.custom-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.dark-mode .custom-tooltip::after {
+    border-color: #000 transparent transparent transparent;
+}
+
+.dark-mode .ritual-step button:disabled {
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+
+.tooltip-container:hover .custom-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.ritual-step {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.ritual-step.active {
+    display: flex;
+}
+
+.ritual-step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.ritual-choices {
+    display: flex;
+    gap: 20px;
+}
+
+.ritual-choice-btn, .ritual-step button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--md-sys-color-outline-light);
+    background-color: var(--md-sys-color-surface-light);
+    color: var(--md-sys-color-on-surface-light);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dark-mode .ritual-choice-btn, .dark-mode .ritual-step button {
+    border-color: var(--md-sys-color-outline-dark);
+    background-color: var(--md-sys-color-surface-dark);
+    color: var(--md-sys-color-on-surface-dark);
+}
+
+.ritual-choice-btn:hover, .ritual-step button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: var(--md-sys-color-primary-light);
+}
+
+.dark-mode .ritual-choice-btn:hover, .dark-mode .ritual-step button:hover {
+    border-color: var(--md-sys-color-primary-dark);
+}
+
+.ritual-step textarea, .ritual-step input[type="text"] {
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: var(--font-family);
+    text-align: center;
+    border: 1px solid var(--md-sys-color-outline-light);
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    background-color: var(--md-sys-color-surface-light);
+    color: var(--md-sys-color-on-surface-light);
+}
+
+.dark-mode .ritual-step textarea,
+.dark-mode .ritual-step input[type="text"] {
+    background-color: var(--md-sys-color-surface-variant-dark);
+    border-color: var(--md-sys-color-outline-dark);
+    color: var(--md-sys-color-on-surface-dark);
+}
+
+.ritual-subtext {
+    font-size: 0.9rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+    margin-bottom: 20px;
+}
+.dark-mode .ritual-subtext { color: var(--md-sys-color-on-surface-variant-dark); }
+
+.ritual-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+
+.ritual-checklist label {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.ritual-checklist input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.ritual-step button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border-color: var(--md-sys-color-outline-light);
+}
+
+.dark-mode .ritual-step button:disabled {
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+.focus-mode {
+    border: 2px solid var(--md-sys-color-primary-light);
+    border-radius: var(--border-radius);
+    padding: 40px;
+}
+
+.dark-mode .focus-mode {
+    border-color: var(--md-sys-color-primary-dark);
+}
+
+#ritual-focus-task {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--md-sys-color-primary-light);
+}
+.dark-mode #ritual-focus-task { color: var(--md-sys-color-primary-dark); }
+
+#ritual-timer {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.ritual-summary {
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+    margin-bottom: 20px;
+    background-color: var(--md-sys-color-surface-light);
+    border: 1px solid var(--md-sys-color-outline-light);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
+
+.dark-mode .ritual-summary {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+.summary-item:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--md-sys-color-on-surface-variant-light);
+    margin: 0 0 5px 0;
+}
+
+.dark-mode .summary-label {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+.summary-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0;
+    padding-left: 10px;
+    border-left: 3px solid var(--md-sys-color-primary-light);
+}
+
+.dark-mode .summary-text {
+    border-left-color: var(--md-sys-color-primary-dark);
+}
+
+.ritual-stat {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--md-sys-color-on-surface-variant-light);
+    max-width: 80%;
+    margin-bottom: 20px;
+    border-left: 2px solid var(--md-sys-color-outline-light);
+    padding-left: 10px;
+}
+
+.dark-mode .ritual-stat {
+    color: var(--md-sys-color-on-surface-variant-dark);
+    border-left-color: var(--md-sys-color-outline-dark);
+}
+
+/* === Eisenhower Charts & Insights Styles === */
+.eisenhower-charts-insights {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .eisenhower-charts-insights {
+    border-top-color: var(--md-sys-color-outline-dark);
+}
+
+.charts-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.chart-box {
+    max-width: 45%;
+    min-width: 300px;
+    flex-grow: 1;
+}
+
+#eisenhower-insights {
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Styles for completed tasks in Eisenhower Matrix */
+.task-item.completed .task-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-item .complete-btn i.ph-check-circle-fill {
+    color: #4CAF50;
+}
+
+.task-item .complete-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.task-item .task-number {
+    margin-right: 8px;
+    font-weight: bold;
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .task-item .task-number {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+/* === Eisenhower Charts & Insights Styles === */
+.eisenhower-charts-insights {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .eisenhower-charts-insights {
+    border-top-color: var(--md-sys-color-outline-dark);
+}
+
+.charts-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.chart-box {
+    max-width: 45%;
+    min-width: 300px;
+    flex-grow: 1;
+}
+
+#eisenhower-insights {
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Styles for completed tasks in Eisenhower Matrix */
+.task-item.completed .task-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-item .complete-btn i.ph-check-circle-fill {
+    color: #4CAF50;
+}
+
+.task-item .complete-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.task-item .task-number {
+    margin-right: 8px;
+    font-weight: bold;
+    color: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode .task-item .task-number {
+    color: var(--md-sys-color-on-surface-variant-dark);
+}

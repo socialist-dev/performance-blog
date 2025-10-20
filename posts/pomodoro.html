@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kỹ Thuật Pomodoro - Nhật Ký Hiệu Suất</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script>
+        // Anti-FOUC script
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo-link">
+            <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
+                <i class="header-logo ph-fill ph-notebook"></i>
+                <span>Nhật Ký</span>
+            </a>
+        </h1>
+        <nav class="main-nav">
+            <a href="../index.html">Bài viết</a>
+            <a href="../tools.html">Công cụ</a>
+        </nav>
+        <div class="theme-switcher">
+            <label for="theme-toggle">Chế độ Tối</label>
+            <input type="checkbox" id="theme-toggle">
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <nav class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Kỹ Thuật Pomodoro</span>
+            </nav>
+            <div class="post-header-emoji">🍅</div>
+            
+            <h2>Kỹ Thuật Pomodoro (Quả Cà Chua)</h2>
+            <div class="post-meta">
+                <span>Ngày 19 tháng 10, 2025</span>
+                <span>•</span>
+                <span>10 phút đọc</span>
+                <span class="badge">Quản lý Thời gian</span>
+            </div>
+
+            <h3>1. Ý Tưởng Cốt Lõi & Cơ Sở Khoa Học</h3>
+            <p>Kỹ thuật Pomodoro, được phát triển bởi Francesco Cirillo, là một phương pháp quản lý thời gian đơn giản nhưng mạnh mẽ, dựa trên việc chia nhỏ công việc thành các phiên tập trung ngắn (thường là 25 phút), gọi là "Pomodoro", xen kẽ với các quãng nghỉ ngắn. Mục tiêu chính là tối ưu hóa sự tập trung, duy trì năng lượng tinh thần ở mức cao nhất, và chống lại sự kiệt sức cũng như thói quen trì hoãn.</p>
+            <p>Hiệu quả của Pomodoro bắt nguồn từ việc nó tôn trọng các chu kỳ năng lượng tự nhiên của não bộ, hay còn gọi là "nhịp điệu siêu ngày" (ultradian rhythms). Các nghiên cứu thần kinh học chỉ ra rằng não của chúng ta có thể duy trì sự tập trung tối ưu trong khoảng 90-120 phút, với các đỉnh tập trung ngắn hơn khoảng 25-45 phút. Các phiên Pomodoro 25 phút được thiết kế để tận dụng đỉnh cao của sự tập trung này, trong khi các quãng nghỉ ngắn giúp ngăn ngừa sự mệt mỏi nhận thức trước khi nó kịp tích tụ.</p>
+
+            <h3>2. Thần Kinh Học & Tâm Lý Học Đằng Sau Pomodoro</h3>
+            <p>Pomodoro không chỉ là một công cụ quản lý thời gian mà còn là một chiến lược tối ưu hóa hóa học não bộ và tâm lý học hành vi:</p>
+            <ul>
+                <li><strong>Dopamine & Động lực:</strong> Việc hoàn thành mỗi phiên Pomodoro và đánh dấu nó là "xong" sẽ kích hoạt sự giải phóng dopamine trong não. Dopamine là một chất dẫn truyền thần kinh liên quan đến hệ thống khen thưởng, củng cố hành vi tích cực và tạo ra động lực để tiếp tục.</li>
+                <li><strong>Acetylcholine & Phục hồi nhận thức:</strong> Các quãng nghỉ ngắn cho phép não bộ bổ sung acetylcholine, một chất dẫn truyền thần kinh quan trọng cho sự chú ý và học hỏi. Việc này giúp ngăn ngừa tình trạng "đốt cháy" nhận thức và duy trì sự minh mẫn.</li>
+                <li><strong>Hiệu ứng Zeigarnik:</strong> Tương tự như GTD, Pomodoro giúp đóng các "vòng lặp mở" bằng cách cam kết hoàn thành một phần công việc trong một khoảng thời gian nhất định, giảm bớt sự ám ảnh của các nhiệm vụ chưa hoàn thành.</li>
+            </ul>
+
+            <h3>3. Cách Hoạt Động: Chu Trình Tối Ưu Hóa Năng Lượng</h3>
+            <p>Quy trình thực hiện một phiên Pomodoro rất đơn giản, nhưng hiệu quả:</p>
+            <pre class="mermaid centered-chart">
+                graph TD
+                    A[Chọn 1 công việc] --> B[Đặt đồng hồ 25 phút];
+                    B --> C[Làm việc tập trung];
+                    C --> D{Hết 25 phút?};
+                    D -- Có --> E[Nghỉ 5 phút];
+                    E --> F{Đã đủ 4 phiên?};
+                    F -- Không --> B;
+                    F -- Có --> G[Nghỉ dài 15-30 phút];
+                    G --> A;
+            </pre>
+            <p class="chart-caption"><em>Biểu đồ 2: Chu trình làm việc và nghỉ ngơi theo Kỹ thuật Pomodoro.</em></p>
+            <ol>
+                <li><strong>Chọn công việc:</strong> Xác định một nhiệm vụ duy nhất bạn muốn hoàn thành.</li>
+                <li><strong>Đặt hẹn giờ:</strong> Đặt đồng hồ đếm ngược 25 phút.</li>
+                <li><strong>Tập trung làm việc:</strong> Làm việc không ngừng nghỉ, không bị gián đoạn cho đến khi hết giờ.</li>
+                <li><strong>Nghỉ ngắn:</strong> Khi đồng hồ reo, đánh dấu một phiên Pomodoro hoàn thành và nghỉ 5 phút. Hãy đứng dậy, đi lại, uống nước, nhưng tránh xa các tác nhân gây xao lãng kỹ thuật số.</li>
+                <li><strong>Nghỉ dài:</strong> Sau khi hoàn thành 4 phiên Pomodoro, hãy nghỉ một quãng dài hơn, khoảng 15-30 phút, để não bộ có thời gian phục hồi sâu hơn.</li>
+            </ol>
+
+            <h3>4. Thực Hành Tốt Nhất & Tùy Chỉnh</h3>
+            <ul>
+                <li><strong>Chia nhỏ công việc:</strong> Nếu một nhiệm vụ lớn hơn 4 Pomodoro, hãy chia nó thành các bước nhỏ hơn.</li>
+                <li><strong>Gộp công việc:</strong> Những việc nhỏ (chưa đến 15 phút) có thể được gộp lại vào trong một phiên Pomodoro.</li>
+                <li><strong>Tùy chỉnh thời gian:</strong> Đừng ngại thử nghiệm. Một số người thấy chu kỳ 50 phút làm việc / 10 phút nghỉ (50/10) hiệu quả hơn, phù hợp hơn với nhịp điệu siêu ngày của họ.</li>
+                <li><strong>Tận dụng quãng nghỉ:</strong> Hãy thực sự nghỉ ngơi. Vận động nhẹ, thiền, hoặc nhìn ra ngoài cửa sổ. Tránh kiểm tra email, mạng xã hội trong các quãng nghỉ ngắn.</li>
+            </ul>
+
+            <h3>5. Lợi Ích Được Chứng Minh & Hạn Chế</h3>
+            <p>Nhiều nghiên cứu đã chứng minh rằng các quãng nghỉ ngắn giúp tăng cường sinh lực, giảm mệt mỏi và cải thiện khả năng tập trung. Pomodoro giúp giảm sự trì hoãn, tăng cường khả năng hoàn thành nhiệm vụ và duy trì sự gắn kết với công việc. Nó đặc biệt hữu ích cho những người dễ bị phân tâm hoặc cần một cấu trúc rõ ràng để bắt đầu.</p>
+            <p>Tuy nhiên, một số nhà phê bình chỉ ra rằng cấu trúc 25 phút cứng nhắc có thể không phù hợp với tất cả mọi người hoặc mọi loại nhiệm vụ, đặc biệt là những công việc đòi hỏi sự tập trung sâu liên tục. Ngoài ra, mặc dù có cơ sở khoa học vững chắc về lợi ích của các quãng nghỉ, bản thân Kỹ thuật Pomodoro chưa có nhiều nghiên cứu can thiệp nghiêm ngặt quy mô lớn để chứng minh hiệu quả của nó so với các phương pháp khác.</p>
+
+        </article>
+            <button id="scrollToTopBtn" title="Lên đầu trang"><i class="ph-fill ph-arrow-up"></i></button>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>

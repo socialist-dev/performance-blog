@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ Hiệu Suất - Nhật Ký Hiệu Suất</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script>
+        // Anti-FOUC script
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="logo-link">
+            <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                <i class="header-logo ph-fill ph-notebook"></i>
+                <span>Nhật Ký</span>
+            </a>
+        </h1>
+        <nav class="main-nav">
+            <a href="index.html">Bài viết</a>
+            <a href="tools.html" class="active">Công cụ</a>
+        </nav>
+        <div class="theme-switcher">
+            <label for="theme-toggle">Chế độ Tối</label>
+            <input type="checkbox" id="theme-toggle">
+        </div>
+    </header>
+
+    <main>
+        <div class="tabs-container">
+            <ul class="tab-nav">
+                <li><a href="#ritual-tool" class="tab-link active">Nghi thức Cam kết</a></li>
+                <li><a href="#eisenhower-tool" class="tab-link">Ma trận Eisenhower</a></li>
+                <li><a href="#gtd-tool" class="tab-link">Công cụ GTD</a></li>
+            </ul>
+
+            <div id="ritual-tool" class="tab-content active">
+                <div class="tool-container ritual-container">
+                    <div class="ritual-header">
+                        <h2>Nghi thức Cam kết</h2>
+                        <div class="tooltip-container">
+                            <button id="tone-icon-switch">
+                                <i class="ph ph-smiley"></i>
+                            </button>
+                            <span class="custom-tooltip">Tooltip text</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Initial Choice -->
+                    <div id="ritual-step-1" class="ritual-step active">
+                        <p id="ritual-s1-stat" class="ritual-stat"></p>
+                        <h3 id="ritual-s1-header">Hôm nay, bạn chọn con đường nào?</h3>
+                        <div class="ritual-choices">
+                            <button id="ritual-choice-focus" class="ritual-choice-btn">Tập trung & Kỷ luật</button>
+                            <button id="ritual-choice-procrastinate" class="ritual-choice-btn">Trì hoãn & Hối tiếc</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Procrastination Path -->
+                    <div id="ritual-step-2" class="ritual-step">
+                        <h3 id="ritual-s2-header">Bạn đã chọn sự trì hoãn.</h3>
+                        <p id="ritual-s2-text">Hãy hình dung: Cuối ngày, công việc vẫn còn đó. Mục tiêu xa hơn một chút. Cảm giác hối tiếc và căng thẳng tăng lên. Đây có thực sự là điều bạn muốn?</p>
+                        <button id="ritual-change-mind-btn">Không, tôi muốn thay đổi.</button>
+                    </div>
+
+                    <!-- Step 3: Commitment Path - Why -->
+                    <div id="ritual-step-3" class="ritual-step">
+                        <p id="ritual-s3-stat" class="ritual-stat"></p>
+                        <h3 id="ritual-s3-header">Hãy kết nối với mục tiêu của bạn.</h3>
+                        <p id="ritual-s3-prompt">Viết ra một thành tựu quan trọng nhất bạn sẽ đạt được nếu hoàn thành công việc hôm nay.</p>
+                        <textarea id="ritual-why-input" rows="3"></textarea>
+                        <p id="ritual-s3-reward" class="ritual-subtext">Mỗi hành động nhỏ hôm nay đều xây dựng nên thành tựu lớn này.</p>
+                        <button id="ritual-commit-why-btn">Tôi cam kết</button>
+                    </div>
+
+                    <!-- Step 4: Commitment Path - What -->
+                    <div id="ritual-step-4" class="ritual-step">
+                        <p id="ritual-s4-stat" class="ritual-stat"></p>
+                        <h3 id="ritual-s4-header">Biến cam kết thành hành động.</h3>
+                        <p id="ritual-s4-prompt">Công việc <strong>quan trọng nhất</strong> bạn sẽ hoàn thành trong 90 phút tới là gì?</p>
+                        <input type="text" id="ritual-what-input">
+                        <p id="ritual-s4-aversion" class="ritual-subtext">Nếu bạn không làm việc này, bạn đang chấp nhận đứng yên tại chỗ.</p>
+                        <button id="ritual-commit-what-btn">Tôi sẽ hoàn thành việc này</button>
+                    </div>
+
+                    <!-- Step 5: Commitment Path - How -->
+                    <div id="ritual-step-5" class="ritual-step">
+                        <h3 id="ritual-s5-header">Bảo vệ sự tập trung của bạn.</h3>
+                        <p id="ritual-s5-prompt">Xác nhận bạn đã loại bỏ những kẻ cắp thời gian này:</p>
+                        <div id="ritual-checklist" class="ritual-checklist"></div>
+                        <button id="ritual-start-focus-btn" disabled>Bắt đầu tập trung</button>
+                    </div>
+
+                    <!-- Step 6: Final Confirmation -->
+                    <div id="ritual-step-6" class="ritual-step">
+                        <h3 id="ritual-s6-header">Xác nhận cuối cùng</h3>
+                        <div class="ritual-summary">
+                            <div class="summary-item">
+                                <p class="summary-label">Lý do của bạn:</p>
+                                <p id="summary-why" class="summary-text"></p>
+                            </div>
+                            <div class="summary-item">
+                                <p class="summary-label">Nhiệm vụ quan trọng nhất:</p>
+                                <p id="summary-what" class="summary-text"></p>
+                            </div>
+                        </div>
+                        <p id="ritual-s6-rethink" class="ritual-subtext"></p>
+                        <div class="ritual-choices">
+                            <button id="ritual-rewrite-btn">Chỉnh sửa lại</button>
+                            <button id="ritual-final-commit-btn">Tôi đã sẵn sàng. Bắt đầu!</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 7: Focus Mode -->
+                    <div id="ritual-step-7" class="ritual-step focus-mode">
+                        <p id="ritual-s7-text">Bạn đã cam kết. Bây giờ là lúc hành động.</p>
+                        <h4>Tập trung vào:</h4>
+                        <p id="ritual-focus-task"></p>
+                        <div id="ritual-timer">90:00</div>
+                        <button id="ritual-end-focus-btn">Hoàn thành</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="eisenhower-tool" class="tab-content">
+                <div class="tool-container">
+                    <h2>Công Cụ: Ma Trận Eisenhower</h2>
+                    <p class="tool-description">Thêm công việc, sau đó kéo và thả chúng vào các góc phần tư phù hợp để sắp xếp.</p>
+                    
+                    <div class="task-input-container">
+                        <input type="text" id="task-input" placeholder="Nhập một công việc mới...">
+                        <button id="add-task-btn">Thêm công việc</button>
+                    </div>
+
+                    <div class="eisenhower-matrix">
+                        <div class="quadrant do">
+                            <h3>Quan trọng & Khẩn cấp</h3>
+                            <ul class="task-list" id="do-list"></ul>
+                        </div>
+                        <div class="quadrant schedule">
+                            <h3>Quan trọng & Không khẩn cấp</h3>
+                            <ul class="task-list" id="schedule-list"></ul>
+                        </div>
+                        <div class="quadrant delegate">
+                            <h3>Không quan trọng & Khẩn cấp</h3>
+                            <ul class="task-list" id="delegate-list"></ul>
+                        </div>
+                        <div class="quadrant eliminate">
+                            <h3>Không quan trọng & Không khẩn cấp</h3>
+                            <ul class="task-list" id="eliminate-list"></ul>
+                        </div>
+                    </div>
+
+                    <div class="eisenhower-charts-insights">
+                        <h3>Thống kê & Nhận định</h3>
+                        <div class="charts-container">
+                            <div class="chart-box">
+                                <canvas id="completionRateChart"></canvas>
+                            </div>
+                            <div class="chart-box">
+                                <canvas id="quadrantCompletionChart"></canvas>
+                            </div>
+                        </div>
+                        <p id="eisenhower-insights" class="tool-description"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gtd-tool" class="tab-content">
+                <div class="tool-container gtd-container">
+                    <h2>Công Cụ: Getting Things Done (GTD)</h2>
+                    <p class="tool-description">Bắt đầu bằng cách thêm mọi thứ vào Hộp thư đến. Sau đó, xử lý từng mục để chuyển chúng sang các danh sách phù hợp.</p>
+
+                    <div class="tool-guide">
+                        <h4>Cách sử dụng:</h4>
+                        <ol>
+                            <li><strong>Bước 1: Thu thập</strong> - Nhập tất cả công việc, ý tưởng của bạn vào ô "Hộp thư đến" và nhấn nút thêm.</li>
+                            <li><strong>Bước 2: Xử lý</strong> - Với mỗi mục trong Hộp thư đến, quyết định xem nó là gì và nhấn nút tương ứng:
+                                <ul>
+                                    <li><strong>➡️ Hành động:</strong> Nếu đó là một việc cần làm ngay.</li>
+                                    <li><strong>📂 Dự án:</strong> Nếu đó là một mục tiêu lớn cần nhiều bước.</li>
+                                    <li><strong>🗓️ Có thể làm sau:</strong> Nếu đó là ý tưởng cho tương lai.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Bước 3: Thực hiện</strong> - Quản lý các công việc trong danh sách "Hành động tiếp theo" và "Dự án" bằng cách đánh dấu chúng là "Hoàn thành" hoặc "Xóa".</li>
+                        </ol>
+                    </div>
+
+                    <!-- GTD Inbox -->
+                    <div class="gtd-section">
+                        <h3>📥 Hộp thư đến</h3>
+                        <div class="gtd-input-container">
+                            <input type="text" id="gtd-inbox-input" placeholder="Thêm một ý tưởng hoặc công việc...">
+                            <button id="gtd-add-inbox-btn">Thêm vào Hộp thư đến</button>
+                        </div>
+                        <ul id="gtd-inbox-list" class="gtd-list"></ul>
+                    </div>
+
+                    <div class="gtd-columns">
+                        <!-- GTD Next Actions -->
+                        <div class="gtd-section">
+                            <h3>➡️ Hành động tiếp theo</h3>
+                            <ul id="gtd-next-actions-list" class="gtd-list"></ul>
+                        </div>
+
+                        <!-- GTD Projects -->
+                        <div class="gtd-section">
+                            <h3>📂 Dự án</h3>
+                            <ul id="gtd-projects-list" class="gtd-list"></ul>
+                        </div>
+
+                        <!-- GTD Someday/Maybe -->
+                        <div class="gtd-section">
+                            <h3>🗓️ Có thể làm sau</h3>
+                            <ul id="gtd-someday-list" class="gtd-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

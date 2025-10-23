@@ -7,19 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.checked = true;
     }
 
-    // Mermaid Chart Initialization (Manual Rendering for Robustness)
-    if (typeof mermaid !== 'undefined' && document.querySelector('.mermaid')) {
-        console.log('Mermaid library found. Initializing for manual rendering...');
+    // --- Rerenderable Mermaid Chart Logic ---
+    const renderMermaidCharts = () => {
+        if (typeof mermaid === 'undefined' || !document.querySelector('.mermaid')) {
+            return;
+        }
+        
+        console.log('Rendering/Re-rendering Mermaid charts...');
         const isDarkMode = rootEl.classList.contains('dark-mode');
         mermaid.initialize({
-            startOnLoad: false, // We will call .render() manually for each chart
+            startOnLoad: false,
             theme: isDarkMode ? 'dark' : 'default'
         });
 
         const mermaidElements = document.querySelectorAll('pre.mermaid');
         mermaidElements.forEach((element, index) => {
-            const graphDefinition = element.textContent;
-            const id = 'mermaid-chart-' + index; // Generate a unique ID
+            // Store the original definition if it's not already there
+            if (!element.dataset.definition) {
+                element.dataset.definition = element.textContent;
+            }
+            const graphDefinition = element.dataset.definition;
+            const id = 'mermaid-chart-' + index;
+            
+            element.innerHTML = '';
+            element.removeAttribute('data-processed');
+            
             mermaid.render(id, graphDefinition).then(({ svg, bindFunctions }) => {
                 element.innerHTML = svg;
                 if (bindFunctions) {
@@ -31,9 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = '<div style="color: red;">Error rendering chart: ' + error.message + '</div>';
             });
         });
-    }
+    };
 
-    // Function to handle theme switching
+    // Initial render on page load
+    renderMermaidCharts();
+
+    // Function to handle theme switching without reloading
     const switchTheme = () => {
         if (themeToggle.checked) {
             rootEl.classList.add('dark-mode');
@@ -42,8 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
             rootEl.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
         }
-        // Reload the page to apply theme to Mermaid chart correctly
-        location.reload();
+        
+        renderMermaidCharts();
+        $(document).trigger('theme:changed');
     };
 
     // Add event listener for the theme toggle
@@ -80,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollToTopBtn) {
         // Show or hide the button based on scroll position
         window.onscroll = function() {
-            // Show button if user has scrolled to the bottom of the page
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) { // -100px threshold
+            // Show button if user has scrolled down 400px
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
                 scrollToTopBtn.style.display = "flex";
             } else {
                 scrollToTopBtn.style.display = "none";
@@ -327,6 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 $('#eisenhower-insights').text(insightsText);
             };
+            
+            // --- Listen for theme change event ---
+            $(document).on('theme:changed', function() {
+                updateChartsAndInsights();
+            });
 
             // Initial render
             renderAllTasks();
@@ -646,4 +667,180 @@ document.addEventListener('DOMContentLoaded', () => {
         updateUITone(savedTone);
         goToStep(1);
     });
+
+    // --- Chart Logic for Blog Posts ---
+    const renderBlogCharts = () => {
+        // Chart for Eisenhower Post
+        const timeManagementChartCtx = document.getElementById('timeManagementImpactChart');
+        if (timeManagementChartCtx) {
+            const isDarkMode = document.documentElement.classList.contains('dark-mode');
+            const textColor = isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+            const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            const primaryColor = isDarkMode ? '#c8c1b1' : '#111111';
+            const secondaryColor = '#555555';
+
+            const existingChart = Chart.getChart(timeManagementChartCtx);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            new Chart(timeManagementChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Kỹ năng Quản lý Thời gian', 'Tần suất Đa nhiệm'],
+                    datasets: [{
+                        label: 'Mức độ Ảnh hưởng (Hệ số Beta)',
+                        data: [0.401, 0.215],
+                        backgroundColor: [primaryColor, secondaryColor],
+                        borderColor: [primaryColor, secondaryColor],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutCubic'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'So sánh Mức độ Ảnh hưởng đến Kết quả Học tập',
+                            color: textColor
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        y: {
+                            ticks: { color: textColor },
+                            grid: { color: 'transparent' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart for Time Blocking Post
+        const timeBlockingBenefitsCtx = document.getElementById('timeBlockingBenefitsChart');
+        if (timeBlockingBenefitsCtx) {
+            const isDarkMode = document.documentElement.classList.contains('dark-mode');
+            const textColor = isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+            const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            const primaryColor = isDarkMode ? '#c8c1b1' : '#111111';
+
+            const existingChart = Chart.getChart(timeBlockingBenefitsCtx);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            new Chart(timeBlockingBenefitsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tăng năng suất (%)', 'Hoàn thành nhanh hơn (%)', 'Ít lỗi hơn (%)'],
+                    datasets: [{
+                        label: 'Lợi ích ước tính',
+                        data: [50, 40, 50],
+                        backgroundColor: primaryColor,
+                        borderColor: primaryColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutCubic'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Lợi ích về Năng suất của Time Blocking',
+                            color: textColor
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { color: gridColor },
+                            max: 60
+                        },
+                        x: {
+                            ticks: { color: textColor },
+                            grid: { color: 'transparent' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart for Eisenhower Case Studies
+        const caseStudyCtx = document.getElementById('caseStudyChart');
+        if (caseStudyCtx) {
+            const isDarkMode = document.documentElement.classList.contains('dark-mode');
+            const textColor = isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+            const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+            const color1 = isDarkMode ? '#c8c1b1' : '#111111';
+            const color2 = '#555555';
+            const color3 = '#8A6E34';
+
+            const existingChart = Chart.getChart(caseStudyCtx);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            new Chart(caseStudyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Giảm thời gian dự án (%)', 'Tăng hài lòng KH (%)', 'Giảm thời gian quay vòng (%)'],
+                    datasets: [{
+                        label: 'Cải thiện trung bình',
+                        data: [20, 15, 25],
+                        backgroundColor: [color1, color2, color3]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: { duration: 1000, easing: 'easeOutCubic' },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Kết quả định lượng từ các Case Study',
+                            color: textColor
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { color: gridColor },
+                            max: 30
+                        },
+                        x: {
+                            ticks: { color: textColor },
+                            grid: { color: 'transparent' }
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+    // Initial render of blog charts
+    renderBlogCharts();
+
+    // Also re-render blog charts on theme change
+    $(document).on('theme:changed', renderBlogCharts);
 });

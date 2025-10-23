@@ -19,17 +19,19 @@
         })();
     </script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header>
-        <h1 class="logo-link">
+        <div class="logo-link">
             <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
                 <i class="header-logo ph-fill ph-notebook"></i>
                 <span>Nhật Ký</span>
             </a>
-        </h1>
+        </div>
         <nav class="main-nav">
             <a href="../index.html">Bài viết</a>
             <a href="../tools.html">Công cụ</a>
@@ -54,7 +56,7 @@
                 <span>Ngày 19 tháng 10, 2025</span>
                 <span>•</span>
                 <span>10 phút đọc</span>
-                <span class="badge">Quản lý Thời gian</span>
+                <span class="badge">Thời gian</span>
             </div>
 
             <h3>1. Ý Tưởng Cốt Lõi & Cơ Sở Khoa Học</h3>
@@ -63,11 +65,17 @@
 
             <h3>2. Thần Kinh Học & Tâm Lý Học Đằng Sau Pomodoro</h3>
             <p>Pomodoro không chỉ là một công cụ quản lý thời gian mà còn là một chiến lược tối ưu hóa hóa học não bộ và tâm lý học hành vi:</p>
-            <ul>
-                <li><strong>Dopamine & Động lực:</strong> Việc hoàn thành mỗi phiên Pomodoro và đánh dấu nó là "xong" sẽ kích hoạt sự giải phóng dopamine trong não. Dopamine là một chất dẫn truyền thần kinh liên quan đến hệ thống khen thưởng, củng cố hành vi tích cực và tạo ra động lực để tiếp tục.</li>
-                <li><strong>Acetylcholine & Phục hồi nhận thức:</strong> Các quãng nghỉ ngắn cho phép não bộ bổ sung acetylcholine, một chất dẫn truyền thần kinh quan trọng cho sự chú ý và học hỏi. Việc này giúp ngăn ngừa tình trạng "đốt cháy" nhận thức và duy trì sự minh mẫn.</li>
-                <li><strong>Hiệu ứng Zeigarnik:</strong> Tương tự như GTD, Pomodoro giúp đóng các "vòng lặp mở" bằng cách cam kết hoàn thành một phần công việc trong một khoảng thời gian nhất định, giảm bớt sự ám ảnh của các nhiệm vụ chưa hoàn thành.</li>
-            </ul>
+            <div class="two-col-container">
+                <div class="two-col-item">
+                    <h4>Dopamine & Động lực</h4>
+                    <p>Việc hoàn thành mỗi phiên Pomodoro và đánh dấu nó là "xong" sẽ kích hoạt sự giải phóng dopamine. Đây là chất dẫn truyền thần kinh của hệ thống khen thưởng, giúp củng cố hành vi tích cực và tạo ra động lực để bạn tiếp tục.</p>
+                </div>
+                <div class="two-col-item">
+                    <h4>Acetylcholine & Phục hồi</h4>
+                    <p>Các quãng nghỉ ngắn cho phép não bộ bổ sung acetylcholine, một chất dẫn truyền thần kinh quan trọng cho sự chú ý và học hỏi. Việc này giúp ngăn ngừa tình trạng "đốt cháy" nhận thức và duy trì sự minh mẫn.</p>
+                </div>
+            </div>
+            <p>Ngoài ra, kỹ thuật này còn giúp giải quyết <strong>Hiệu ứng Zeigarnik</strong>—sự ám ảnh của não bộ về các nhiệm vụ chưa hoàn thành—bằng cách cam kết xử lý một phần công việc trong một khoảng thời gian cụ thể.</p>
 
             <h3>3. Cách Hoạt Động: Chu Trình Tối Ưu Hóa Năng Lượng</h3>
             <p>Quy trình thực hiện một phiên Pomodoro rất đơn giản, nhưng hiệu quả:</p>
@@ -95,7 +103,11 @@
             <ul>
                 <li><strong>Chia nhỏ công việc:</strong> Nếu một nhiệm vụ lớn hơn 4 Pomodoro, hãy chia nó thành các bước nhỏ hơn.</li>
                 <li><strong>Gộp công việc:</strong> Những việc nhỏ (chưa đến 15 phút) có thể được gộp lại vào trong một phiên Pomodoro.</li>
-                <li><strong>Tùy chỉnh thời gian:</strong> Đừng ngại thử nghiệm. Một số người thấy chu kỳ 50 phút làm việc / 10 phút nghỉ (50/10) hiệu quả hơn, phù hợp hơn với nhịp điệu siêu ngày của họ.</li>
+            </ul>
+            <div class="stat-highlight">
+                <p><strong>Gợi ý tùy chỉnh:</strong> Đừng ngại thử nghiệm. Một số người thấy chu kỳ <span class="stat-number">50 phút</span> làm việc / <span class="stat-number">10 phút</span> nghỉ hiệu quả hơn, phù hợp hơn với nhịp điệu năng lượng của họ.</p>
+            </div>
+            <ul>
                 <li><strong>Tận dụng quãng nghỉ:</strong> Hãy thực sự nghỉ ngơi. Vận động nhẹ, thiền, hoặc nhìn ra ngoài cửa sổ. Tránh kiểm tra email, mạng xã hội trong các quãng nghỉ ngắn.</li>
             </ul>
 

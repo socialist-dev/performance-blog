@@ -17,17 +17,19 @@
         })();
     </script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header>
-        <h1 class="logo-link">
+        <div class="logo-link">
             <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
                 <i class="header-logo ph-fill ph-notebook"></i>
                 <span>Nhật Ký</span>
             </a>
-        </h1>
+        </div>
         <nav class="main-nav">
             <a href="../index.html">Bài viết</a>
             <a href="../tools.html">Công cụ</a>
@@ -55,13 +57,20 @@
             </div>
 
             <h3>1. Kẻ Thù Thầm Lặng: Định Luật Parkinson & Sự Trì Hoãn</h3>
-            <p>Nhà sử học Cyril Northcote Parkinson đã đưa ra một định luật nổi tiếng: "Công việc sẽ phình ra để lấp đầy thời gian được ấn định cho nó." Đây là lý do tại sao một nhiệm vụ 30 phút có thể kéo dài cả buổi sáng nếu bạn không có một kế hoạch rõ ràng. Bộ não chúng ta, khi thấy có nhiều thời gian, sẽ cho phép sự trì hoãn, sự cầu toàn không cần thiết và sự xao lãng xen vào. Time Blocking là một vũ khí trực diện để chống lại định luật này bằng cách tạo ra sự khẩn cấp nhân tạo và đặt ra các giới hạn thời gian nghiêm ngặt, buộc chúng ta phải làm việc hiệu quả hơn trong khung thời gian đã định.</p>
+            <div class="stat-highlight">
+                <p><strong>Định luật Parkinson:</strong> "Công việc sẽ phình ra để lấp đầy thời gian được ấn định cho nó."</p>
+            </div>
+            <p>Đây là lý do tại sao một nhiệm vụ 30 phút có thể kéo dài cả buổi sáng. Time Blocking là một vũ khí trực diện để chống lại định luật này bằng cách tạo ra sự khẩn cấp nhân tạo và đặt ra các giới hạn thời gian nghiêm ngặt, buộc chúng ta phải làm việc hiệu quả hơn.</p>
 
             <h3>2. Sức Mạnh Của "Ý Định Thực Thi" (Implementation Intentions)</h3>
             <p>Time Blocking không chỉ là việc lên danh sách việc cần làm, mà là việc biến ý định thành hành động cụ thể. Khoa học gọi đây là "ý định thực thi" (Implementation Intentions). Thay vì nói một cách mơ hồ "Tôi sẽ viết báo cáo", bạn tạo ra một kế hoạch sắt đá: "Vào lúc 9 giờ sáng thứ Hai, tôi sẽ ngồi tại bàn làm việc và viết báo cáo trong 90 phút." Các nghiên cứu của nhà tâm lý học Peter Gollwitzer cho thấy việc tạo ra một kế hoạch "Nếu-Thì" (Nếu hoàn cảnh X xảy ra, thì tôi sẽ thực hiện hành vi Y) như vậy làm tăng đáng kể khả năng bạn sẽ thực sự làm điều đó. Lịch của bạn trở thành một chuỗi các ý định thực thi đã được cam kết trước, giảm thiểu gánh nặng ra quyết định và tăng cường khả năng theo đuổi mục tiêu.</p>
 
             <h3>3. Làm Việc Theo Nhịp Điệu Tự Nhiên Của Não Bộ & Deep Work</h3>
-            <p>Bộ não con người không được thiết kế để tập trung liên tục trong 8 giờ. Nó hoạt động theo các chu kỳ tự nhiên gọi là "nhịp điệu siêu ngày" (Ultradian Rhythms), với các đỉnh tập trung kéo dài khoảng 90-120 phút, theo sau là nhu cầu nghỉ ngơi. Time Blocking cho phép bạn tôn trọng nhịp điệu này. Bằng cách lên lịch cho các khối "làm việc sâu" (deep work) khoảng 90 phút, xen kẽ với các khoảng nghỉ ngắn, bạn đang tối ưu hóa năng lượng tinh thần của mình, cho phép sự tập trung cao độ và ngăn ngừa tình trạng kiệt sức. Các nghiên cứu chỉ ra rằng việc giảm thiểu chuyển đổi ngữ cảnh (context switching) – vốn có thể làm giảm năng suất tới 40% và mất hơn 20 phút để lấy lại sự tập trung sau mỗi lần gián đoạn – là chìa khóa để đạt được trạng thái làm việc sâu.</p>
+            <p>Bộ não hoạt động theo các chu kỳ tự nhiên gọi là "nhịp điệu siêu ngày" (Ultradian Rhythms), với các đỉnh tập trung kéo dài khoảng 90-120 phút. Time Blocking cho phép bạn tôn trọng nhịp điệu này bằng cách lên lịch cho các khối "làm việc sâu" (deep work) xen kẽ với các khoảng nghỉ ngắn, giúp tối ưu hóa năng lượng và sự tập trung.</p>
+            <p>Lợi ích lớn nhất của việc này là giảm thiểu "chuyển đổi ngữ cảnh" (context switching), một trong những kẻ thù lớn nhất của năng suất.</p>
+            <div class="stat-highlight">
+                <p>Nghiên cứu chỉ ra rằng việc liên tục chuyển đổi giữa các nhiệm vụ có thể làm giảm năng suất tới <span class="stat-number">40%</span> và khiến bạn mất hơn <span class="stat-number">20 phút</span> để lấy lại sự tập trung sâu sau mỗi lần gián đoạn.</p>
+            </div>
 
             <h3>4. Giảm Thiểu Mệt Mỏi Khi Ra Quyết Định (Decision Fatigue)</h3>
             <p>Mệt mỏi khi ra quyết định là tình trạng cạn kiệt năng lượng tinh thần do phải đưa ra quá nhiều lựa chọn trong ngày, dẫn đến các quyết định kém chất lượng hơn. Time Blocking giải quyết vấn đề này một cách hiệu quả bằng cách tiền định sẵn các nhiệm vụ và hoạt động. Khi bạn đã lên lịch mọi thứ từ trước, bạn không cần phải liên tục tự hỏi "Tôi nên làm gì tiếp theo?" nữa. Việc này giúp bảo tồn năng lượng tinh thần cho các nhiệm vụ thực sự quan trọng, thay vì lãng phí nó vào các quyết định nhỏ nhặt về ưu tiên.</p>
@@ -86,8 +95,18 @@
             </ol>
 
             <h3>6. Lợi Ích Vượt Trội & Kết Nối Thần Kinh Học</h3>
-            <p>Bằng cách áp dụng Time Blocking, bạn không chỉ quản lý thời gian, mà còn quản lý sự tập trung và năng lượng của mình. Bạn chuyển từ trạng thái phản ứng thụ động sang chủ động kiến tạo ngày làm việc của mình. Việc giảm thiểu sự mệt mỏi khi ra quyết định và loại bỏ sự phân tâm sẽ giải phóng không gian tinh thần, cho phép bạn thực hiện công việc có chiều sâu và ý nghĩa hơn. Các nghiên cứu đã chỉ ra rằng những người sử dụng Time Blocking có thể tăng năng suất từ 30% đến 50%, hoàn thành nhiệm vụ nhanh hơn 40% và mắc ít lỗi hơn 50%.</p>
-            <p>Từ góc độ thần kinh học, Time Blocking giúp tối ưu hóa chức năng của vỏ não trước trán (prefrontal cortex) bằng cách giảm gánh nặng ra quyết định liên tục. Nó cũng giúp giảm thiểu "dư lượng chú ý" (attention residue) – tình trạng tâm trí vẫn còn vương vấn với nhiệm vụ trước đó sau khi chuyển sang nhiệm vụ mới – từ đó cho phép bạn tập trung hoàn toàn vào công việc hiện tại. Việc này giúp não bộ hoạt động ở hiệu suất cao nhất, giảm căng thẳng và tăng cường khả năng đạt được mục tiêu.</p>
+            <p>Bằng cách áp dụng Time Blocking, bạn chuyển từ trạng thái phản ứng thụ động sang chủ động kiến tạo ngày làm việc của mình. Các nghiên cứu đã chỉ ra những lợi ích đáng kể về năng suất, được trực quan hóa trong biểu đồ dưới đây.</p>
+            <div class="chart-container-post">
+                <canvas id="timeBlockingBenefitsChart"></canvas>
+            </div>
+            <p class="chart-caption"><em>Biểu đồ 4: Các lợi ích về năng suất khi áp dụng Time Blocking.</em></p>
+            <p>Những người sử dụng Time Blocking có thể:</p>
+            <ul>
+                <li>Tăng năng suất tổng thể từ <strong>30% đến 50%</strong>.</li>
+                <li>Hoàn thành nhiệm vụ nhanh hơn <strong>40%</strong>.</li>
+                <li>Mắc ít lỗi hơn <strong>50%</strong>.</li>
+            </ul>
+            <p>Từ góc độ thần kinh học, Time Blocking giúp tối ưu hóa chức năng của vỏ não trước trán (prefrontal cortex) bằng cách giảm gánh nặng ra quyết định và giảm thiểu "dư lượng chú ý" (attention residue), cho phép bạn tập trung hoàn toàn vào công việc hiện tại.</p>
 
         </article>
             <button id="scrollToTopBtn" title="Lên đầu trang"><i class="ph-fill ph-arrow-up"></i></button>

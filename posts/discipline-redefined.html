@@ -17,17 +17,19 @@
         })();
     </script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header>
-        <h1 class="logo-link">
+        <div class="logo-link">
             <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
                 <i class="header-logo ph-fill ph-notebook"></i>
                 <span>Nhật Ký</span>
             </a>
-        </h1>
+        </div>
         <nav class="main-nav">
             <a href="../index.html">Bài viết</a>
             <a href="../tools.html">Công cụ</a>
@@ -62,7 +64,11 @@
             <p>Người có "kỷ luật thép" thực ra không dùng ý chí nhiều hơn chúng ta. Họ chỉ đơn giản là ít phải đối mặt với cám dỗ hơn. Đây là kết luận từ nghiên cứu của nhà tâm lý học Wendy Wood, tác giả cuốn *Good Habits, Bad Habits*. Bà cho thấy rằng những người có khả năng tự kiểm soát cao lại là những người giỏi nhất trong việc cấu trúc môi trường để loại bỏ các lựa chọn không lành mạnh.</p>
             <ul>
                 <li><strong>Khái niệm cốt lõi:</strong> Ma sát (Friction). Thay vì chống lại cám dỗ, hãy tăng "ma sát" cho các thói quen xấu và giảm "ma sát" cho các thói quen tốt.</li>
-                <li><strong>Số liệu:</strong> Một nghiên cứu kinh điển cho thấy những nhân viên văn phòng để kẹo trên bàn làm việc (ma sát thấp) ăn nhiều hơn 71% so với những người để kẹo trong ngăn kéo (ma sát cao).</li>
+            </ul>
+            <div class="stat-highlight">
+                <p>Một nghiên cứu kinh điển cho thấy nhân viên văn phòng để kẹo trên bàn làm việc (ma sát thấp) ăn nhiều hơn <span class="stat-number">71%</span> so với những người để kẹo trong ngăn kéo (ma sát cao).</p>
+            </div>
+            <ul>
                 <li><strong>Khuôn khổ áp dụng (Choice Architecture):</strong>
                     <pre class="mermaid centered-chart">
                         graph TD

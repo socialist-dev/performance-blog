@@ -18,17 +18,19 @@
         })();
     </script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header>
-        <h1 class="logo-link">
+        <div class="logo-link">
             <a href="../index.html" style="display: flex; align-items: center; gap: 10px;">
                 <i class="header-logo ph-fill ph-notebook"></i>
                 <span>Nhật Ký</span>
             </a>
-        </h1>
+        </div>
         <nav class="main-nav">
             <a href="../index.html">Bài viết</a>
             <a href="../tools.html">Công cụ</a>
@@ -59,7 +61,9 @@
             <p>Bộ não con người, một cỗ máy sinh học kỳ diệu, lại có một điểm yếu cố hữu: bộ nhớ làm việc (working memory) cực kỳ hạn chế. Giống như RAM của máy tính, nó chỉ có thể xử lý và giữ một vài thông tin cùng một lúc. Khi chúng ta cố gắng ghi nhớ mọi cuộc hẹn, ý tưởng, và danh sách công việc trong đầu, chúng ta đang tạo ra vô số các "vòng lặp mở" (open loops). Các nghiên cứu khoa học, đặc biệt là những nghiên cứu về Hiệu ứng Zeigarnik, chỉ ra rằng não bộ có xu hướng liên tục "ping" chúng ta về những nhiệm vụ chưa hoàn thành, gây ra sự phân tâm, lo lắng và làm giảm đáng kể khả năng tập trung vào công việc hiện tại.</p>
 
             <h3>2. Nguyên Tắc Cốt Lõi: Giảm Tải Nhận Thức (Cognitive Offloading)</h3>
-            <p>Đây là nền tảng khoa học chính và mạnh mẽ nhất của GTD. Thay vì biến não thành một kho lưu trữ quá tải, GTD biến nó thành một công cụ xử lý thông tin hiệu quả. Bằng cách "giảm tải" (cognitive offloading) tất cả các cam kết, ý tưởng và nhiệm vụ ra một "hệ thống bên ngoài đáng tin cậy" (external trusted system) – có thể là một cuốn sổ, một ứng dụng, hay một hệ thống file vật lý – bạn giải phóng tài nguyên nhận thức quý giá. Các nghiên cứu về "trí nhớ mở rộng" (extended mind) và "nhận thức phân tán" (distributed cognition) cho thấy việc sử dụng các công cụ bên ngoài không phải là sự "gian lận", mà là một cách tự nhiên và hiệu quả để bộ não hoạt động tối ưu. Hệ thống GTD của bạn trở thành một bộ não thứ hai, đáng tin cậy và luôn sẵn sàng.</p>
+            <div class="stat-highlight">
+                <p><strong>Nguyên tắc cốt lõi của GTD:</strong> Thay vì biến não thành một kho lưu trữ quá tải, GTD biến nó thành một công cụ xử lý hiệu quả. Bằng cách "giảm tải" (cognitive offloading) tất cả các cam kết và ý tưởng ra một "hệ thống bên ngoài đáng tin cậy", bạn giải phóng tài nguyên nhận thức quý giá. Hệ thống GTD của bạn trở thành một bộ não thứ hai, đáng tin cậy và luôn sẵn sàng.</p>
+            </div>
 
             <h3>3. Năm Bước Của GTD Dưới Góc Nhìn Khoa Học</h3>
             <p>Mỗi bước trong GTD đều được thiết kế để làm việc với, chứ không phải chống lại, cách bộ não chúng ta vận hành, giúp chuyển đổi sự hỗn loạn thành sự rõ ràng và hành động.</p>

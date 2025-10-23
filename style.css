@@ -1326,58 +1326,105 @@ pre.mermaid svg {
     color: var(--md-sys-color-on-surface-variant-dark);
 }
 
-/* === Eisenhower Charts & Insights Styles === */
-.eisenhower-charts-insights {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--md-sys-color-outline-light);
+/* Styles for Data Highlights in Posts */
+.stat-highlight {
+    background-color: var(--md-sys-color-secondary-container-light);
+    border-left: 4px solid var(--md-sys-color-secondary-light);
+    padding: var(--spacing-unit);
+    margin: calc(var(--spacing-unit) * 1.5) 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
-.dark-mode .eisenhower-charts-insights {
-    border-top-color: var(--md-sys-color-outline-dark);
+.dark-mode .stat-highlight {
+    background-color: var(--md-sys-color-secondary-container-dark);
+    border-left-color: var(--md-sys-color-secondary-dark);
 }
 
-.charts-container {
+.stat-highlight p {
+    margin: 0;
+}
+
+.stat-highlight .stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--md-sys-color-primary-light);
+}
+
+.dark-mode .stat-highlight .stat-number {
+    color: var(--md-sys-color-primary-dark);
+}
+
+.chart-container-post {
+    margin: calc(var(--spacing-unit) * 2) auto;
+    padding: var(--spacing-unit);
+    background-color: var(--md-sys-color-surface-light);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--md-sys-color-outline-light);
+}
+
+.dark-mode .chart-container-post {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
+}
+
+/* Simple Two-Column Layout for Posts */
+.two-col-container {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+    gap: var(--spacing-unit);
+    margin: var(--spacing-unit) 0;
     flex-wrap: wrap;
 }
 
-.chart-box {
-    max-width: 45%;
-    min-width: 300px;
-    flex-grow: 1;
+.two-col-item {
+    flex: 1;
+    min-width: 250px; /* Allow wrapping on small screens */
+    background-color: var(--md-sys-color-surface-light);
+    border: 1px solid var(--md-sys-color-outline-light);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
 }
 
-#eisenhower-insights {
-    margin-top: 20px;
-    text-align: center;
-    font-style: italic;
+.dark-mode .two-col-item {
+    background-color: var(--md-sys-color-surface-dark);
+    border-color: var(--md-sys-color-outline-dark);
 }
 
-/* Styles for completed tasks in Eisenhower Matrix */
-.task-item.completed .task-name {
-    text-decoration: line-through;
-    opacity: 0.6;
+.two-col-item h4 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--md-sys-color-primary-light);
+}
+.dark-mode .two-col-item h4 {
+    color: var(--md-sys-color-primary-dark);
 }
 
-.task-item .complete-btn i.ph-check-circle-fill {
-    color: #4CAF50;
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.task-item .complete-btn:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
+::-webkit-scrollbar-track {
+    background: var(--md-sys-color-surface-variant-light);
 }
 
-.task-item .task-number {
-    margin-right: 8px;
-    font-weight: bold;
-    color: var(--md-sys-color-on-surface-variant-light);
+.dark-mode ::-webkit-scrollbar-track {
+    background: var(--md-sys-color-surface-dark);
 }
 
-.dark-mode .task-item .task-number {
-    color: var(--md-sys-color-on-surface-variant-dark);
+::-webkit-scrollbar-thumb {
+    background: var(--md-sys-color-outline-light);
+    border-radius: 5px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--md-sys-color-outline-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--md-sys-color-on-surface-variant-light);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--md-sys-color-on-surface-variant-dark);
 }
